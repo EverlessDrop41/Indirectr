@@ -1,4 +1,4 @@
-<html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -15,7 +15,7 @@
 
   <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
   <script src="js/lockr.js"></script>
-  <script src="js/vue.min.js"></script>
+  <script src="js/vue.js"></script>
 
   <script src="js/app.js"></script>
 
@@ -31,8 +31,35 @@
     </div>
   </nav>
 
+  <br>
+  <br>
+
   <div class="container">
-    {{ message }}
+    <div class="row">
+      <h2>Add an indirect</h2>
+      <form class="row">
+        <label for="content">Content: </label>
+        <textarea class="u-full-width" id="content" type="text" placeholder="Content" v-model="editor.content"></textarea>
+        <button class="button-primary" type="button" value="Submit">Submit</button>
+      </form>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="indirects_list">
+
+        <div class="indirect_item u-full-width u-cf" v-for="i in indirects">
+          <p class="u-pull-left">
+            {{ i.content }}
+          </p>
+          <button class="u-pull-right button-primary" v-on:click="composeTweet(i.content)">Tweet it</button>
+        </div>
+
+      </div>
+    </div>
   </div>
+
+
 </body>
 </html>

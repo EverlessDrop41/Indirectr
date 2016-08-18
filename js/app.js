@@ -18,7 +18,8 @@ $(document).ready(function () {
         //Do the add stuff
       },
       composeTweet: function (content) {
-        alert(content);
+        var win = window.open("https://twitter.com/intent/tweet?text=" + content, '_blank');
+        win.focus();
       }
     }
   });

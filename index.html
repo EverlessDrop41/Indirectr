@@ -40,7 +40,7 @@
       <form class="row">
         <label for="content">Content: </label>
         <textarea class="u-full-width" id="content" type="text" placeholder="Content" v-model="editor.content"></textarea>
-        <button class="button-primary" type="button" value="Submit">Submit</button>
+        <button class="button-primary" type="button" value="Submit" v-on:click="add()">Submit</button>
       </form>
     </div>
 
@@ -49,11 +49,20 @@
     <div class="row">
       <div class="indirects_list">
 
-        <div class="indirect_item u-full-width u-cf" v-for="i in indirects">
+        <div class="indirect_item u-full-width u-cf" v-for="i in indirects" track-by="$index">
           <p class="u-pull-left">
             {{ i.content }}
           </p>
-          <button class="u-pull-right button-primary" v-on:click="composeTweet(i.content)">Tweet it</button>
+          <div class="u-pull-right">
+            <button class="button" v-on:click="deleteIndirect(i)">Delete it</button>
+            or
+            <button class="button-primary" v-on:click="composeTweet(i.content)">Tweet it</button>
+          </div>
+
+        </div>
+
+        <div v-if="indirects.length == 0">
+          <p>Sorry, no indirects found.</p>
         </div>
 
       </div>
